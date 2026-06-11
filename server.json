@@ -1,0 +1,20 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.palimkarakshay/anaplan-kit-mcp",
+  "description": "Anaplan model-builder knowledge offline (formula reference, cookbook recipes, blueprint linting) plus optional live Anaplan API tools. No tenant needed for the knowledge tools.",
+  "repository": {
+    "url": "https://github.com/palimkarakshay/anaplan-kit-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "anaplan-kit-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

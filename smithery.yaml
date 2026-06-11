@@ -1,0 +1,18 @@
+# Smithery registry manifest — https://smithery.ai
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      anaplanKitRoot:
+        type: string
+        description: >-
+          Optional path to an anaplan-kit checkout (ANAPLAN_KIT_ROOT). Without
+          it the server uses the content snapshot bundled in the package.
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: "uvx",
+      args: ["anaplan-kit-mcp"],
+      env: config.anaplanKitRoot ? { ANAPLAN_KIT_ROOT: config.anaplanKitRoot } : {}
+    })

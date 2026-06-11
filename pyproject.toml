@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "anaplan-kit-mcp"
+version = "0.1.0"
+description = "MCP server for Anaplan model builders: offline formula reference, cookbook recipes and blueprint linting (bundled content, zero credentials), plus optional live Anaplan API tools via anaplan-sdk."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Akshay Palimkar" }]
+keywords = ["anaplan", "mcp", "model-context-protocol", "planning", "ai-agents", "anaplan-formulas"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+]
+dependencies = [
+    "mcp>=1.2,<2",
+]
+
+[project.optional-dependencies]
+# Live Anaplan API tools (anaplan_list_workspaces, anaplan_run_* ...).
+# [cert] pulls cryptography so certificate auth works out of the box.
+live = [
+    "anaplan-sdk[cert]>=0.5,<1",
+]
+dev = [
+    "pytest>=8",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+anaplan-kit-mcp = "anaplan_kit_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/palimkarakshay/anaplan-kit-mcp"
+Repository = "https://github.com/palimkarakshay/anaplan-kit-mcp"
+Issues = "https://github.com/palimkarakshay/anaplan-kit-mcp/issues"
+"Content source (anaplan-kit)" = "https://github.com/palimkarakshay/anaplan-kit"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/anaplan_kit_mcp"]
+# The bundled kit content snapshot (_content/) ships inside the wheel by default
+# (hatchling includes all non-Python files under the package directory).
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/anaplan_kit_mcp",
+    "tools",
+    "tests",
+    "README.md",
+    "LICENSE",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+extend-exclude = ["**/__pycache__", "src/anaplan_kit_mcp/_content"]
+
+[tool.ruff.lint]
+# pyflakes(F), pycodestyle(E/W), isort(I), pyupgrade(UP), flake8-bugbear(B)
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests may use long descriptive strings and assert-heavy style.
+"tests/*" = ["E501"]
