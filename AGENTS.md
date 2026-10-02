@@ -3,7 +3,7 @@
 **Public MIT** standalone Python MCP server (stdio, FastMCP) for Anaplan model builders:
 5 offline knowledge tools over bundled anaplan-kit content (search, doc read, formula
 reference, recipes, blueprint lint) + 8 live Anaplan API tools on `anaplan-sdk` (`[live]`
-extra). Lumivara product line: **Learn**. GitHub `palimkarakshay/anaplan-kit-mcp`;
+extra). Product line: **Learn**. GitHub `palimkarakshay/anaplan-kit-mcp`;
 PyPI `anaplan-kit-mcp`. The Anaplan analog of `abap-mcp`.
 
 ## Package manager: pip + venv (NOT uv) — Python 3.10+ (CI 3.11), hatchling build
